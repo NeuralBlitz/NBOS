@@ -50,10 +50,20 @@ export default function EquationDetail() {
           </button>
         </Link>
         <div className="flex gap-3">
-          <button className="p-2 border border-primary/30 hover:bg-primary/20 text-primary transition-colors">
+          <button 
+            onClick={() => handleShare(equation)}
+            className="p-2 border border-primary/30 hover:bg-primary/20 text-primary transition-colors"
+            data-testid="button-share"
+            title="Share equation"
+          >
             <Share2 className="w-5 h-5" />
           </button>
-          <button className="p-2 border border-primary/30 hover:bg-primary/20 text-primary transition-colors">
+          <button 
+            onClick={() => handlePrint(equation)}
+            className="p-2 border border-primary/30 hover:bg-primary/20 text-primary transition-colors"
+            data-testid="button-print"
+            title="Print equation"
+          >
             <Printer className="w-5 h-5" />
           </button>
         </div>
@@ -163,4 +173,73 @@ function MetaRow({ label, value, highlight = false }: { label: string, value: st
       </span>
     </div>
   );
+}
+
+function handleShare(equation: any) {
+  const shareText = `Check out this Hyper-Axiomatic Equation from Omega Prime Codex:\n\n${equation.title} (${equation.code})\n\n${equation.concept}\n\nLaTeX: ${equation.latex}`;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: equation.title,
+      text: shareText,
+      url: window.location.href
+    }).catch(err => console.log('Share failed:', err));
+  } else {
+    // Fallback: Copy to clipboard
+    navigator.clipboard.writeText(shareText);
+    alert('Equation copied to clipboard!');
+  }
+}
+
+function handlePrint(equation: any) {
+  const printWindow = window.open('', '', 'height=600,width=800');
+  if (!printWindow) return;
+  
+  const printContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>${equation.title}</title>
+      <style>
+        body { font-family: 'Courier New', monospace; line-height: 1.6; margin: 40px; }
+        h1 { color: #00f0ff; border-bottom: 2px solid #00f0ff; padding-bottom: 10px; }
+        h2 { color: #bc13fe; margin-top: 30px; }
+        .code { color: #00f0ff; font-weight: bold; }
+        .section { margin-bottom: 30px; }
+        .latex { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 4px; font-size: 14px; overflow-x: auto; }
+        .deconstruction { white-space: pre-wrap; font-size: 12px; background: #f9f9f9; padding: 15px; border-radius: 4px; }
+        .metadata { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; color: #666; }
+      </style>
+    </head>
+    <body>
+      <h1>${equation.title}</h1>
+      <p class="code">Code: ${equation.code}</p>
+      
+      <div class="section">
+        <h2>Conceptual Framework</h2>
+        <p>${equation.concept}</p>
+      </div>
+      
+      <div class="section">
+        <h2>LaTeX Expression</h2>
+        <div class="latex">${equation.latex}</div>
+      </div>
+      
+      <div class="section">
+        <h2>Deconstruction</h2>
+        <div class="deconstruction">${equation.deconstruction}</div>
+      </div>
+      
+      <div class="metadata">
+        <p>Category: ${equation.category}</p>
+        <p>Printed from: Omega Prime Codex</p>
+        <p>Date: ${new Date().toLocaleString()}</p>
+      </div>
+    </body>
+    </html>
+  `;
+  
+  printWindow.document.write(printContent);
+  printWindow.document.close();
+  printWindow.print();
 }

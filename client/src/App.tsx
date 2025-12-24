@@ -8,6 +8,7 @@ import Dashboard from "@/pages/Dashboard";
 import EquationIndex from "@/pages/EquationIndex";
 import EquationDetail from "@/pages/EquationDetail";
 import Simulation from "@/pages/Simulation";
+import NBOSOverview from "@/pages/NBOSOverview";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
             <Route path="/equations" component={EquationIndex} />
             <Route path="/equations/:id" component={EquationDetail} />
             <Route path="/simulation" component={Simulation} />
+            <Route path="/nbos" component={NBOSOverview} />
             <Route component={NotFound} />
           </Switch>
         </div>
