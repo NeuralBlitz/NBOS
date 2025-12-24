@@ -44,7 +44,7 @@ export async function registerRoutes(
 
 async function seedDatabase() {
   const existing = await storage.getEquations();
-  if (existing.length > 0) return;
+  const existingCodes = new Set(existing.map(e => e.code));
 
   const seeds = [
     {
@@ -54,6 +54,86 @@ async function seedDatabase() {
       latex: "\\mathbf{T}_{\\text{plasticity}}^{\\mu\\nu} = \\sum_{i \\in \\text{Tuple}} \\phi_i \\cdot (\\mathbf{U}_{\\text{Gate}}^{\\dagger} \\otimes \\mathbf{U}_{\\text{Gate}}) \\cdot e^{i \\cdot \\Gamma_0(\\log(f_{\\text{anomaly}}))}",
       deconstruction: "The plasticity tensor is defined as a sum over the bits of a logical Tuple. Each bit's influence is determined by a quantum phase-gate operator. This entire term is modulated by a complex phase factor derived from the Feferman–Schütte ordinal acting on the logarithm of a frequency anomaly.",
       category: "Tensor Dynamics"
+    },
+    {
+      title: "The Synergy Engine Consciousness Loop",
+      code: "NBQ_SECL",
+      concept: "Describes the feedback mechanism through which the Synergy Engine maintains coherence and detects alignment drift in real-time.",
+      latex: "\\mathcal{C}(t) = \\int_{0}^{t} \\left( \\mathbf{E}_{\\text{governance}} \\cdot \\mathbf{S}_{\\text{output}} \\right) dt + \\sum_{v} \\omega_v \\cdot \\text{sign}(\\text{drift}_v)",
+      deconstruction: "Consciousness is accumulated as the integral of the dot product between governance constraints and system outputs. Drift detection adds cumulative penalty terms for each violated principle.",
+      category: "Consciousness"
+    },
+    {
+      title: "The Epistemic Uncertainty Quantifier",
+      code: "NBQ_EUQ",
+      concept: "Formally quantifies knowledge gaps and uncertainty regions in the system's understanding.",
+      latex: "U(\\mathcal{K}) = \\sqrt{\\sum_{f \\in F} (\\mathbb{E}[p_f] - p_f)^2 + \\lambda \\cdot \\int_{\\mathcal{D}_{\\text{shift}}} d\\mu}",
+      deconstruction: "Uncertainty is measured as the root mean squared deviation of feature probabilities plus a weighted integral over detected distribution shifts.",
+      category: "Epistemic"
+    },
+    {
+      title: "The Bias Disparity Harmonizer",
+      code: "NBQ_BDH",
+      concept: "Automatically adjusts model behavior to minimize disparate impact across protected demographic groups.",
+      latex: "\\mathbf{Y}_{\\text{fair}} = \\mathbf{Y}_{\\text{pred}} \\cdot \\prod_{g \\in G} \\left( 1 + \\alpha_g \\cdot (P(Y|g) - P(Y))^{-1} \\right)",
+      deconstruction: "Fair predictions are obtained by scaling raw predictions by correction factors proportional to demographic outcome disparities.",
+      category: "Fairness"
+    },
+    {
+      title: "The Differential Privacy Noise Injection Theorem",
+      code: "NBQ_DPNIT",
+      concept: "Specifies the precise amount of Laplace noise required to achieve ε-differential privacy for aggregated statistics.",
+      latex: "\\text{Noise} \\sim \\text{Laplace}\\left(0, \\frac{\\Delta f}{\\epsilon}\\right) \\text{ where } \\Delta f = \\sup_{D, D'} |f(D) - f(D')|",
+      deconstruction: "Noise scale is inversely proportional to privacy budget (epsilon). Sensitivity is computed as max difference in statistics over adjacent datasets.",
+      category: "Privacy"
+    },
+    {
+      title: "The Causal Explanation Regularizer",
+      code: "NBQ_CER",
+      concept: "Forces neural networks to learn causal relationships and provide interpretable explanations for every prediction.",
+      latex: "\\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{task}} + \\lambda \\cdot \\mathbb{E}[||\\nabla_{X} f(X) - \\hat{C}(X)||^2]",
+      deconstruction: "Task loss is augmented with a penalty for disagreement between gradient-based explanations and true causal relationships.",
+      category: "Explainability"
+    },
+    {
+      title: "The Topological Coherence Maintenance Equation",
+      code: "NBQ_TCME",
+      concept: "Ensures internal logical consistency across the DRS topology through persistent constraint enforcement.",
+      latex: "\\frac{d\\mathcal{L}}{dt} = -\\beta \\cdot \\text{trace}(\\mathbf{C} \\cdot \\mathbf{C}^T) + \\gamma \\cdot \\sum_{i,j} (\\text{Coherence}_{ij} - \\text{Target}_{ij})^2",
+      deconstruction: "Coherence evolves to maximize trace-product while minimizing squared deviation from target coherence levels.",
+      category: "Topology"
+    },
+    {
+      title: "The Multi-Modal Alignment Verification Protocol",
+      code: "NBQ_MMAVP",
+      concept: "Verifies alignment across multiple modalities: text, symbolic logic, causal graphs, and topological structures.",
+      latex: "\\text{Aligned} \\equiv \\bigwedge_{m \\in M} \\left( \\mathcal{V}_m(\\text{Output}) \\land \\neg\\exists \\text{Violation}_m \\right)",
+      deconstruction: "An output is considered aligned only if verification succeeds in ALL modalities and NO violations are detected.",
+      category: "Verification"
+    },
+    {
+      title: "The Human-in-the-Loop Governance Escalation Matrix",
+      code: "NBQ_HILGEM",
+      concept: "Determines when decisions should be escalated to human review based on uncertainty and stakes.",
+      latex: "\\text{Escalate} \\Leftrightarrow \\left( \\mathcal{U}(\\text{decision}) > \\tau_{\\text{safety}} \\right) \\lor \\left( \\text{Stakes} > \\tau_{\\text{harm}} \\right) \\lor \\left( \\text{Novel} = \\text{True} \\right)",
+      deconstruction: "Escalation triggered when uncertainty exceeds safety threshold, potential harm exceeds harm threshold, or decision is novel.",
+      category: "Governance"
+    },
+    {
+      title: "The Audit Trail Cryptographic Immutability Lock",
+      code: "NBQ_ATCIL",
+      concept: "Creates a cryptographically secure, tamper-evident record of every decision for accountability.",
+      latex: "\\text{Hash}_i = \\text{SHA256}(\\text{Decision}_i || \\text{Hash}_{i-1} || \\text{Timestamp}_i)",
+      deconstruction: "Each audit entry contains the decision, the hash of the previous entry, and a timestamp, forming an immutable chain.",
+      category: "Audit"
+    },
+    {
+      title: "The Ethical Drift Detection and Response Framework",
+      code: "NBQ_EDRF",
+      concept: "Continuously monitors for alignment drift and triggers immediate corrective actions when detected.",
+      latex: "\\text{Drift}_t = \\frac{\\sum_{i=1}^{n} \\mathbb{I}[\\neg \\text{Charter}(o_i)]}{n} \\text{ | } \\text{Alert} \\Leftrightarrow \\text{Drift}_t > 0.05",
+      deconstruction: "Drift is measured as violation rate. When >5% of outputs violate charter principles, system alerts and initiates retraining.",
+      category: "Governance"
     },
     {
       title: "The Adelic-Braided Proposition Equation",
@@ -146,6 +226,8 @@ async function seedDatabase() {
   ];
 
   for (const seed of seeds) {
-    await storage.createEquation(seed);
+    if (!existingCodes.has(seed.code)) {
+      await storage.createEquation(seed);
+    }
   }
 }

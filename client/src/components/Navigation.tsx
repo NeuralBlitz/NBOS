@@ -1,11 +1,12 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Variable, Network, Activity } from "lucide-react";
+import { LayoutDashboard, Variable, Network, Activity, Brain } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/equations", label: "Equations", icon: Variable },
   { href: "/simulation", label: "Simulation", icon: Network },
+  { href: "/nbos", label: "NBOS", icon: Brain },
 ];
 
 export function Navigation() {
