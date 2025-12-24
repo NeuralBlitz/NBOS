@@ -118,9 +118,9 @@ export default function Simulation() {
                     className="flex gap-2"
                   >
                     <span className="text-primary/50">[{new Date().toLocaleTimeString()}]</span>
-                    <span className={log.includes("ERROR") ? "text-destructive" : "text-white/80"}>
-                      {log.startsWith(">") ? <span className="text-accent mr-2">➜</span> : null}
-                      {log.replace(">", "")}
+                    <span className={log && log.includes("ERROR") ? "text-destructive" : "text-white/80"}>
+                      {log && log.startsWith(">") ? <span className="text-accent mr-2">➜</span> : null}
+                      {log ? log.replace(">", "") : ""}
                     </span>
                   </motion.div>
                 ))}

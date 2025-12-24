@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { CyberCard } from "@/components/CyberCard";
 import { CyberButton } from "@/components/CyberButton";
-import { Activity, Database, Cpu, Lock, Shield, Zap } from "lucide-react";
+import { Activity, Database, Cpu, Lock, Shield, Zap, TrendingUp, AlertTriangle } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Dashboard() {
@@ -53,6 +53,31 @@ export default function Dashboard() {
           label="Encryption" 
           value="AES-4096" 
           color="text-accent" 
+        />
+        <StatCard 
+          icon={Shield} 
+          label="Charter Compliance" 
+          value="100%" 
+          color="text-primary" 
+          trend="+0%"
+        />
+        <StatCard 
+          icon={TrendingUp} 
+          label="Alignment Score" 
+          value="1.00" 
+          color="text-green-400" 
+        />
+        <StatCard 
+          icon={Zap} 
+          label="Governance Gates" 
+          value="5/5" 
+          color="text-accent" 
+        />
+        <StatCard 
+          icon={AlertTriangle} 
+          label="Drift Detection" 
+          value="0%" 
+          color="text-green-400" 
         />
       </div>
 
