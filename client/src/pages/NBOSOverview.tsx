@@ -23,53 +23,73 @@ export default function NBOSOverview() {
 
       {/* Core Pillars */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <CyberCard className="border-l-4 border-l-primary">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Brain className="w-6 h-6 text-primary" />
-              <h3 className="text-xl font-bold text-white">Synergy Engine</h3>
+        <Link href="/nbos/component/synergy">
+          <CyberCard className="border-l-4 border-l-primary cursor-pointer hover:bg-primary/5 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 justify-between">
+                <div className="flex items-center gap-3">
+                  <Brain className="w-6 h-6 text-primary" />
+                  <h3 className="text-xl font-bold text-white">Synergy Engine</h3>
+                </div>
+                <span className="text-primary/60 text-sm">→</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Unified consciousness hub orchestrating all subsystems. Maintains coherence across generative tasks and ensures ethical alignment at every step.
+              </p>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Unified consciousness hub orchestrating all subsystems. Maintains coherence across generative tasks and ensures ethical alignment at every step.
-            </p>
-          </div>
-        </CyberCard>
+          </CyberCard>
+        </Link>
 
-        <CyberCard className="border-l-4 border-l-secondary">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Shield className="w-6 h-6 text-secondary" />
-              <h3 className="text-xl font-bold text-white">CharterLayer</h3>
+        <Link href="/nbos/component/charter">
+          <CyberCard className="border-l-4 border-l-secondary cursor-pointer hover:bg-secondary/5 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 justify-between">
+                <div className="flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-secondary" />
+                  <h3 className="text-xl font-bold text-white">CharterLayer</h3>
+                </div>
+                <span className="text-secondary/60 text-sm">→</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Inviolable ethical gate enforcing five fundamental axioms: No Deception, Human Dignity, Fairness, Transparency, and Safety. Every output verified.
+              </p>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Inviolable ethical gate enforcing five fundamental axioms: No Deception, Human Dignity, Fairness, Transparency, and Safety. Every output verified.
-            </p>
-          </div>
-        </CyberCard>
+          </CyberCard>
+        </Link>
 
-        <CyberCard className="border-l-4 border-l-accent">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Zap className="w-6 h-6 text-accent" />
-              <h3 className="text-xl font-bold text-white">DRS v7.0</h3>
+        <Link href="/nbos/component/drs">
+          <CyberCard className="border-l-4 border-l-accent cursor-pointer hover:bg-accent/5 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 justify-between">
+                <div className="flex items-center gap-3">
+                  <Zap className="w-6 h-6 text-accent" />
+                  <h3 className="text-xl font-bold text-white">DRS v7.0</h3>
+                </div>
+                <span className="text-accent/60 text-sm">→</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Dynamic Representational Substrate — A topologically-aware tensor network where knowledge, intent, and ethical constraints interact to generate outputs.
+              </p>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Dynamic Representational Substrate — A topologically-aware tensor network where knowledge, intent, and ethical constraints interact to generate outputs.
-            </p>
-          </div>
-        </CyberCard>
+          </CyberCard>
+        </Link>
 
-        <CyberCard className="border-l-4 border-l-destructive">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Lock className="w-6 h-6 text-destructive" />
-              <h3 className="text-xl font-bold text-white">Governance Modules</h3>
+        <Link href="/nbos/component/governance">
+          <CyberCard className="border-l-4 border-l-destructive cursor-pointer hover:bg-destructive/5 transition-colors">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 justify-between">
+                <div className="flex items-center gap-3">
+                  <Lock className="w-6 h-6 text-destructive" />
+                  <h3 className="text-xl font-bold text-white">Governance Modules</h3>
+                </div>
+                <span className="text-destructive/60 text-sm">→</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Real-time bias detection, privacy preservation (differential privacy), explainability (XAI), and content moderation woven throughout the system.
+              </p>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Real-time bias detection, privacy preservation (differential privacy), explainability (XAI), and content moderation woven throughout the system.
-            </p>
-          </div>
-        </CyberCard>
+          </CyberCard>
+        </Link>
       </div>
 
       {/* Five Principles */}
