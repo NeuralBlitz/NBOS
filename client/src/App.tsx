@@ -13,6 +13,9 @@ import NBOSComponentDetail from "@/pages/NBOSComponentDetail";
 import NBOSArchitecture from "@/pages/NBOSArchitecture";
 import NBOSGovernance from "@/pages/NBOSGovernance";
 import NBOSImplementation from "@/pages/NBOSImplementation";
+import Tutorials from "@/pages/Tutorials";
+import PerformanceMetrics from "@/pages/PerformanceMetrics";
+import GenerativeAI from "@/pages/GenerativeAI";
 
 function Router() {
   return (
@@ -36,6 +39,9 @@ function Router() {
             <Route path="/nbos/architecture" component={NBOSArchitecture} />
             <Route path="/nbos/governance" component={NBOSGovernance} />
             <Route path="/nbos/implementation" component={NBOSImplementation} />
+            <Route path="/tutorials" component={Tutorials} />
+            <Route path="/metrics" component={PerformanceMetrics} />
+            <Route path="/genai" component={GenerativeAI} />
             <Route component={NotFound} />
           </Switch>
         </div>
