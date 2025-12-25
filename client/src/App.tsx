@@ -16,6 +16,10 @@ import NBOSImplementation from "@/pages/NBOSImplementation";
 import Tutorials from "@/pages/Tutorials";
 import PerformanceMetrics from "@/pages/PerformanceMetrics";
 import GenerativeAI from "@/pages/GenerativeAI";
+import GenAIGeneration from "@/pages/GenAIGeneration";
+import GenAIFineTuning from "@/pages/GenAIFineTuning";
+import GenAIEvaluation from "@/pages/GenAIEvaluation";
+import GenAIConfiguration from "@/pages/GenAIConfiguration";
 
 function Router() {
   return (
@@ -42,6 +46,10 @@ function Router() {
             <Route path="/tutorials" component={Tutorials} />
             <Route path="/metrics" component={PerformanceMetrics} />
             <Route path="/genai" component={GenerativeAI} />
+            <Route path="/genai/generation" component={GenAIGeneration} />
+            <Route path="/genai/finetuning" component={GenAIFineTuning} />
+            <Route path="/genai/evaluation" component={GenAIEvaluation} />
+            <Route path="/genai/configuration" component={GenAIConfiguration} />
             <Route component={NotFound} />
           </Switch>
         </div>
