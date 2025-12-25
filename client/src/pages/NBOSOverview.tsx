@@ -92,6 +92,44 @@ export default function NBOSOverview() {
         </Link>
       </div>
 
+      {/* Documentation Links */}
+      <div className="space-y-4">
+        <h2 className="text-3xl font-display text-white border-l-4 border-accent pl-4">
+          Comprehensive <span className="text-accent">Documentation</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Link href="/nbos/architecture">
+            <CyberCard className="cursor-pointer hover:bg-primary/10 transition-colors border-l-4 border-primary">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-primary">System Architecture</h3>
+                <p className="text-sm text-gray-400">Layered design, data flow, tensor topology, and subsystem interactions</p>
+                <div className="text-xs text-primary/60">→ Explore Architecture</div>
+              </div>
+            </CyberCard>
+          </Link>
+
+          <Link href="/nbos/governance">
+            <CyberCard className="cursor-pointer hover:bg-secondary/10 transition-colors border-l-4 border-secondary">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-secondary">Governance Framework</h3>
+                <p className="text-sm text-gray-400">Five principles, governance modules, accountability, risk management</p>
+                <div className="text-xs text-secondary/60">→ Explore Framework</div>
+              </div>
+            </CyberCard>
+          </Link>
+
+          <Link href="/nbos/implementation">
+            <CyberCard className="cursor-pointer hover:bg-accent/10 transition-colors border-l-4 border-accent">
+              <div className="space-y-3">
+                <h3 className="text-lg font-bold text-accent">Implementation Guide</h3>
+                <p className="text-sm text-gray-400">Code patterns, data structures, integration, configuration examples</p>
+                <div className="text-xs text-accent/60">→ Explore Implementation</div>
+              </div>
+            </CyberCard>
+          </Link>
+        </div>
+      </div>
+
       {/* Five Principles */}
       <div className="space-y-4">
         <h2 className="text-3xl font-display text-white border-l-4 border-primary pl-4">
