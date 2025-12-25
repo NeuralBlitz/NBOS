@@ -10,6 +10,9 @@ import EquationDetail from "@/pages/EquationDetail";
 import Simulation from "@/pages/Simulation";
 import NBOSOverview from "@/pages/NBOSOverview";
 import NBOSComponentDetail from "@/pages/NBOSComponentDetail";
+import NBOSArchitecture from "@/pages/NBOSArchitecture";
+import NBOSGovernance from "@/pages/NBOSGovernance";
+import NBOSImplementation from "@/pages/NBOSImplementation";
 
 function Router() {
   return (
@@ -30,6 +33,9 @@ function Router() {
             <Route path="/simulation" component={Simulation} />
             <Route path="/nbos" component={NBOSOverview} />
             <Route path="/nbos/component/:id" component={NBOSComponentDetail} />
+            <Route path="/nbos/architecture" component={NBOSArchitecture} />
+            <Route path="/nbos/governance" component={NBOSGovernance} />
+            <Route path="/nbos/implementation" component={NBOSImplementation} />
             <Route component={NotFound} />
           </Switch>
         </div>
