@@ -10,3 +10,5 @@ The project is divided into two main parts:
 ## Getting Started
 
 To get started with the core NBOS system, please refer to the [Quick Start guide in the nbos directory](./nbos/README.md#quick-start).
+
+# NURAL NEXUS
