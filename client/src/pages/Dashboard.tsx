@@ -1,10 +1,27 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { CyberCard } from "@/components/CyberCard";
 import { CyberButton } from "@/components/CyberButton";
-import { Activity, Database, Cpu, Lock, Shield, Zap, TrendingUp, AlertTriangle } from "lucide-react";
+import { Activity, Database, Cpu, Lock, Shield, Zap, TrendingUp, AlertTriangle, Settings, Eye, EyeOff } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Dashboard() {
+  const [visibleWidgets, setVisibleWidgets] = useState({
+    stats: true,
+    processes: true,
+    nbos: true,
+    alerts: true
+  });
+
+  const [showCustomization, setShowCustomization] = useState(false);
+
+  const toggleWidget = (widget) => {
+    setVisibleWidgets(prev => ({
+      ...prev,
+      [widget]: !prev[widget]
+    }));
+  };
+
   return (
     <div className="space-y-8">
       {/* Header Section */}
@@ -18,6 +35,12 @@ export default function Dashboard() {
           </p>
         </div>
         <div className="flex gap-4">
+          <button
+            onClick={() => setShowCustomization(!showCustomization)}
+            className="flex items-center gap-2 px-4 py-2 border border-secondary/50 hover:border-secondary rounded hover:bg-secondary/10 transition-colors text-secondary font-mono text-sm"
+          >
+            <Settings className="w-4 h-4" /> Customize
+          </button>
           <Link href="/simulation">
             <CyberButton variant="primary" glitch>
               INITIATE SEQUENCE
@@ -26,7 +49,42 @@ export default function Dashboard() {
         </div>
       </div>
 
+      {/* Customization Panel */}
+      {showCustomization && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="border border-secondary/30 bg-secondary/5 rounded p-4 mb-6"
+        >
+          <h3 className="text-lg font-bold text-secondary mb-4">Dashboard Customization</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {Object.entries(visibleWidgets).map(([widget, visible]) => (
+              <button
+                key={widget}
+                onClick={() => toggleWidget(widget)}
+                className="flex items-center justify-between p-3 border border-secondary/30 rounded hover:bg-secondary/10 transition-colors text-left"
+              >
+                <span className="text-gray-400 capitalize">{widget} Widget</span>
+                {visible ? (
+                  <Eye className="w-5 h-5 text-secondary" />
+                ) : (
+                  <EyeOff className="w-5 h-5 text-gray-600" />
+                )}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowCustomization(false)}
+            className="mt-4 px-4 py-2 bg-secondary/20 border border-secondary/50 rounded hover:bg-secondary/30 transition-colors text-secondary font-mono text-sm w-full"
+          >
+            Done
+          </button>
+        </motion.div>
+      )}
+
       {/* Stats Grid */}
+      {visibleWidgets.stats && (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
           icon={Activity} 
@@ -80,9 +138,30 @@ export default function Dashboard() {
           color="text-green-400" 
         />
       </div>
+      )}
+
+      {/* Quick Links */}
+      <div className="flex gap-3 flex-wrap">
+        <Link href="/metrics">
+          <CyberButton variant="secondary" className="text-xs">
+            View Metrics Dashboard
+          </CyberButton>
+        </Link>
+        <Link href="/tutorials">
+          <CyberButton variant="secondary" className="text-xs">
+            Interactive Tutorials
+          </CyberButton>
+        </Link>
+        <Link href="/genai">
+          <CyberButton variant="secondary" className="text-xs">
+            Generative AI
+          </CyberButton>
+        </Link>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Feed */}
+        {visibleWidgets.processes && (
         <div className="lg:col-span-2 space-y-6">
           <CyberCard className="min-h-[400px]" title="Active Processes">
             <div className="space-y-4 font-mono text-sm">
@@ -125,8 +204,9 @@ export default function Dashboard() {
             </div>
           </CyberCard>
         </div>
+        )}
 
-        {/* Side Panel */}
+        {visibleWidgets.processes && (
         <div className="space-y-6">
           <CyberCard title="System Resources" className="h-full">
             <div className="flex flex-col gap-6 h-full justify-center">
@@ -137,6 +217,7 @@ export default function Dashboard() {
             </div>
           </CyberCard>
         </div>
+        )}
       </div>
     </div>
   );

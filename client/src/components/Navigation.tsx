@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Variable, Network, Activity, Brain } from "lucide-react";
+import { LayoutDashboard, Variable, Network, Activity, Brain, Book, BarChart3, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -7,6 +7,9 @@ const NAV_ITEMS = [
   { href: "/equations", label: "Equations", icon: Variable },
   { href: "/simulation", label: "Simulation", icon: Network },
   { href: "/nbos", label: "NBOS", icon: Brain },
+  { href: "/tutorials", label: "Tutorials", icon: Book },
+  { href: "/metrics", label: "Metrics", icon: BarChart3 },
+  { href: "/genai", label: "GenAI", icon: Sparkles },
 ];
 
 export function Navigation() {
